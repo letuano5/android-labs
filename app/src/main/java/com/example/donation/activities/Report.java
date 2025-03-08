@@ -33,7 +33,7 @@ public class Report extends Base {
     Toolbar toolbar = findViewById(R.id.toolbar2);
     setSupportActionBar(toolbar);
     listView = findViewById(R.id.reportList);
-    DonationAdapter adapter = new DonationAdapter(this, donations);
+    DonationAdapter adapter = new DonationAdapter(this, app.dbManager.getAll());
     listView.setAdapter(adapter);
   }
 }

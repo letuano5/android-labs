@@ -1,30 +1,33 @@
 package com.example.donation.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.donation.R;
+import com.example.donation.main.DonationApp;
 import com.example.donation.models.Donation;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Base extends AppCompatActivity {
 
-  public final int target = 10000;
-  public int totalDonated = 0;
-  public static List<Donation> donations = new ArrayList<>();
+  public DonationApp app;
 
-  public boolean newDonation(Donation donation) {
-    boolean targetAchieved = totalDonated > target;
-    if (!targetAchieved) {
-      donations.add(donation);
-      totalDonated += donation.amount;
-    } else {
-      Toast.makeText(this, "Target Exceeded!", Toast.LENGTH_SHORT).show();
-    }
-    return targetAchieved;
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    app = (DonationApp) getApplication();
+    app.dbManager.open();
+    app.dbManager.setTotalDonated(this);
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    app.dbManager.close();
   }
 
   @Override
@@ -38,9 +41,13 @@ public class Base extends AppCompatActivity {
     super.onPrepareOptionsMenu(menu);
     MenuItem report = menu.findItem(R.id.menuReport);
     MenuItem donate = menu.findItem(R.id.menuDonate);
-    report.setEnabled(!donations.isEmpty());
+    MenuItem reset = menu.findItem(R.id.menuReset);
+    boolean hasDonation = !app.dbManager.getAll().isEmpty();
+    report.setEnabled(hasDonation);
+    reset.setEnabled(hasDonation);
     donate.setVisible(!(this instanceof Donate));
     report.setVisible(!(this instanceof Report));
+    reset.setVisible(this instanceof Donate);
     return true;
   }
 
