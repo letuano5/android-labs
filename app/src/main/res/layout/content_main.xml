@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <Button
+      android:id="@+id/donateButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:onClick="buttonPressed"
+      android:text="@string/donateButton"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+      android:id="@+id/paymentAmount"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginBottom="203dp"
+      android:ems="10"
+      android:inputType="text"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="@+id/amountPicker"
+      app:layout_constraintStart_toStartOf="@+id/amountPicker"
+      app:layout_constraintTop_toBottomOf="@+id/amountPicker" />
+
+    <NumberPicker
+      android:id="@+id/amountPicker"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="286dp"
+      android:layout_marginBottom="21dp"
+      app:layout_constraintBottom_toTopOf="@+id/paymentAmount"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.953"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.52" />
+
+    <ProgressBar
+      android:id="@+id/progressBar"
+      style="?android:attr/progressBarStyleHorizontal"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginBottom="74dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginEnd="16dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <RadioGroup
+      android:id="@+id/paymentMethod"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="22dp"
+      android:layout_marginStart="16dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <RadioButton
+          android:id="@+id/banking"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/banking" />
+
+        <RadioButton
+          android:id="@+id/cash"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/direct" />
+
+    </RadioGroup>
+
+    <TextView
+      android:id="@+id/textView3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_marginStart="16dp"
+      android:text="@string/donateSubtitle"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+      android:id="@+id/textView2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:layout_marginBottom="590dp"
+      android:layout_marginStart="16dp"
+      android:text="@string/donateTitle"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      app:layout_constraintBottom_toTopOf="@+id/progressBar"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+      android:id="@+id/totalSoFar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="17dp"
+      android:text="TextView"
+      app:layout_constraintBottom_toTopOf="@+id/progressBar"
+      app:layout_constraintStart_toStartOf="@+id/donateButton" />
+    <fragment
+      android:id="@+id/nav_host_fragment_content_main"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:name="androidx.navigation.fragment.NavHostFragment"
+      app:defaultNavHost="true"
+      app:layout_constraintBottom_toTopOf="parent"
+      app:layout_constraintEnd_toStartOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:navGraph="@navigation/nav_graph" />
+
+
+    <!--    <RadioGroup-->
+    <!--        android:id="@+id/paymentMethod"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_above="@+id/progressBar"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        tools:layout_editor_absoluteX="171dp"-->
+    <!--        tools:layout_editor_absoluteY="261dp">-->
+
+    <!--        <RadioButton-->
+    <!--            android:id="@+id/PayPal"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:checked="false"-->
+    <!--            android:text="@string/banking" />-->
+
+    <!--        <RadioButton-->
+    <!--            android:id="@+id/Direct"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:checked="false"-->
+    <!--            android:text="@string/direct" />-->
+
+    <!--        <NumberPicker-->
+    <!--            android:id="@+id/amountPicker"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content" />-->
+
+    <!--    </RadioGroup>-->
+
+    <!--    <ProgressBar-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        style="?android:attr/progressBarStyleHorizontal"-->
+    <!--        android:id="@+id/progressBar"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_above="@+id/donateButton"-->
+    <!--        android:indeterminate="false" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
